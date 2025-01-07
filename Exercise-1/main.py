@@ -24,12 +24,14 @@ download_uris = [
 def download_files():
     if not os.path.exists(DOWNLOADS_PATH):
         os.mkdir(DOWNLOADS_PATH)
+        print("'downloads' folder created.")
 
     for uri in download_uris:
         response = requests.get(uri)
         zip_files_names.append(uri.split('/')[-1])
         with open(os.path.join(DOWNLOADS_PATH, zip_files_names[-1]), "wb") as uri:
             uri.write(response.content)
+            print(f"file: {zip_files_names[-1]} downloaded to 'downloads' folder.")
 
 
 def get_files_names():
@@ -41,7 +43,8 @@ def extract_zip_file():
     try:
         for (zip_file, csv_file) in zip(zip_files_names, csv_files_names):
             with zipfile.ZipFile(os.path.join(DOWNLOADS_PATH, zip_file), 'r') as zip_file:
-                zip_file.extract(csv_file, DOWNLOADS_PATH) 
+                zip_file.extract(csv_file, DOWNLOADS_PATH)
+                print(f"file: {csv_file} extracted to 'downloads' folder.")
 
     except zipfile.BadZipFile:
         print(f"Error occured when tried to unzip file: {zip_file}")
