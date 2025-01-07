@@ -44,7 +44,7 @@ def extract_zip_file():
         for (zip_file, csv_file) in zip(zip_files_names, csv_files_names):
             with zipfile.ZipFile(os.path.join(DOWNLOADS_PATH, zip_file), 'r') as zip_file:
                 zip_file.extract(csv_file, DOWNLOADS_PATH)
-                print(f"file: {csv_file} extracted to 'downloads' folder.")
+                print(f"file: {csv_file} extracted from {zip_file} to 'downloads' folder.")
 
     except zipfile.BadZipFile:
         print(f"Error occured when tried to unzip file: {zip_file}")
@@ -56,6 +56,7 @@ def delete_zip_files():
     try:
         for zip_file in zip_files_names:
             os.remove(os.path.join(DOWNLOADS_PATH, zip_file))
+            print(f"file: {zip_file} deleted from 'downloads' folder.")
 
     except FileNotFoundError:
         print(f"File Not Found Error when tried to unzip file: {zip_file}")
