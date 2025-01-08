@@ -1,9 +1,9 @@
 services:
-  test:
-    image: "exercise-1"
-    volumes:
-      - .:/app
-    command: python3 -m pytest
+  # test:
+  #   image: "exercise-1"
+  #   volumes:
+  #     - .:/app
+  #   command: python3 -m pytest
   run:
     image: "exercise-1"
     volumes:
